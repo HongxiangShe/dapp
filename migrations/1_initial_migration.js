@@ -1,5 +1,6 @@
-const Migrations = artifacts.require("Migrations");
+const ZombieOwnerShip = artifacts.require("./module/ZombieOwnerShip");
+const ZombieOwnerShip = artifacts.require("./module/ZombieOwnerShip");
 
 module.exports = function (deployer) {
-  deployer.deploy(Migrations);
+  deployer.deploy(ZombieOwnerShip);
 };

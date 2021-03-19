@@ -5,6 +5,10 @@ import "./ZombieFeeding.sol";
 
 contract ZombieHelper is ZombieFeeding {
 
+    using SafeMath for uint256;
+    using SafeMath32 for uint32;
+    using SafeMath16 for uint16;
+
     uint levelUpFee = 0.001 ether;
 
     modifier aboveLevel(uint level, uint zombieId) {
@@ -22,7 +26,7 @@ contract ZombieHelper is ZombieFeeding {
 
     function levelUp(uint zombieId) external payable {
         require(msg.value == levelUpFee);
-        zombies[zombieId].level++;
+        zombies[zombieId].level.add(1);
     }
 
     function changeName(uint zombieId, string memory name) external aboveLevel(2, zombieId) onlyOwnerOf(zombieId) {
@@ -39,7 +43,7 @@ contract ZombieHelper is ZombieFeeding {
         for (uint i = 0; i < zombies.length; i++) {
             if (zombieToOwner[i] == owner) {
                 result[counter] = i;
-                counter++;
+                counter.add(1);
             }
         }
         return result;
